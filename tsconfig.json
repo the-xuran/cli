@@ -28,7 +28,7 @@
 
 		"baseUrl": "./",
 
-		"paths": { "*": ["bin/*"] }
+		"paths": { "*": ["bin/*"], "libs/*": ["libs/*"] }
 	},
 
 	"exclude": ["lib", "node_modules"]

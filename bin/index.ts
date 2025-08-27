@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 import chalk from "chalk";
-import createProject from "../libs/create";
+import createProject from "libs/create";
 
 const program = new Command();
 
@@ -17,7 +17,6 @@ program
 	.argument("<project_name>", "The name of the project to create")
 	.action(async (projectName, options) => {
 		console.log(chalk.blue.bold(`\n✨ Creating project: ${projectName}\n`));
-
 		try {
 			await createProject(projectName, options);
 			console.log(chalk.green.bold("\n🎉 Project created successfully!"));
