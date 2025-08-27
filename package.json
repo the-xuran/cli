@@ -1,0 +1,33 @@
+{
+	"name": "create-xuran-template",
+	"version": "1.0.0",
+	"description": "",
+	"bin": {
+		"create-xuran": "dist/bin/index.js"
+	},
+	"engines": {
+		"node": ">=16.0.0"
+	},
+	"scripts": {
+		"cli": "",
+		"build": "tsdown -c tsdown.config.ts",
+		"watch": "tsdown -c tsdown.config.ts -w",
+		"dev": "pnpm build && create-xuran",
+		"format": "prettier \"./src/**/*.{js,jsx,ts,tsx,vue}\" --write"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"packageManager": "pnpm@10.14.0",
+	"devDependencies": {
+		"@types/node": "^24.3.0",
+		"chalk": "^5.6.0",
+		"commander": "^14.0.0",
+		"download-git-repo": "^3.0.2",
+		"prettier": "^3.6.2",
+		"tsdown": "^0.14.2",
+		"fs-extra": "^11.1.1",
+		"inquirer": "^9.2.8",
+		"ora": "^7.0.1"
+	}
+}
