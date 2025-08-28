@@ -3,10 +3,11 @@ import { Command } from "commander";
 import chalk from "chalk";
 import createProject from "libs/create";
 import templates from "libs/templates";
+
 const program = new Command();
 
 program
-	.version("0.0.1")
+	.version(process.env.XU_Ver)
 	.description("A CLI for creating a new xuran project")
 	.name("create-xuran");
 

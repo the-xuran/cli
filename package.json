@@ -5,6 +5,10 @@
 	"bin": {
 		"create-xuran": "dist/index.js"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/the-xuran/cli.git"
+	},
 	"files": [
 		"dist",
 		"templates"
