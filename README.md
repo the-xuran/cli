@@ -24,4 +24,4 @@ create-xuran
 
 # LICENSE
 
-MIT
+[MIT](./LICENSE)

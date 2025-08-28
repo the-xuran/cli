@@ -1,6 +1,6 @@
-# create-xuran vue-template
+# create-xuran tsdown-template
 
-基于 `create-xuran` 的 `vue` 模板，用于快速创建一个 `vue` 项目。
+基于 `create-xuran` 的 `tsdown` 模板，用于快速创建一个 `tsdown` 项目。
 
 # 关于
 

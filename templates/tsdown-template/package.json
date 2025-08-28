@@ -4,11 +4,12 @@
 	"description": "",
 	"main": "dist/index.js",
 	"scripts": {
+		"watch": "tsdown -c tsdown.config.ts --watch",
 		"build": "tsdown -c tsdown.config.ts",
 		"format": "prettier \"./src/**/*.{js,jsx,ts,tsx,vue}\" --write"
 	},
 	"keywords": [],
-	"author": "",
+	"author": "xuran",
 	"license": "MIT",
 	"packageManager": "pnpm@10.14.0",
 	"devDependencies": {

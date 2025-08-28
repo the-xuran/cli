@@ -1,15 +1,10 @@
-# React + TypeScript + Vite
+# create-xuran react-template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+基于 `create-xuran` 的 `react` 模板，用于快速创建一个 `react` 项目。
 
-Currently, two official plugins are available:
+## 扩展ESLint配置
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+如果您正在开发生产应用程序，我们建议更新配置以启用类型感知的代码检查规则：
 
 ```js
 export default tseslint.config([
@@ -39,7 +34,7 @@ export default tseslint.config([
 ]);
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+您还可以安装 [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) 和 [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) 来设置针对 React 的特定代码检查规则：
 
 ```js
 // eslint.config.js
@@ -67,3 +62,15 @@ export default tseslint.config([
 	}
 ]);
 ```
+
+## 关于
+
+作者：[徐然](https://github.com/xiaoxustudio)
+
+联系方式：[xugame@qq.com](emailto://xugame@qq.com)
+
+欢迎提出您宝贵的 **issue**，我们将会处理。
+
+## LICENSE
+
+[MIT](./LICENSE)
