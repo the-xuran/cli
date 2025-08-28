@@ -5,7 +5,7 @@
 ## 安装
 
 ```bash
-npm install -g create-xuran
+npm install -g @xuranxys/cli
 ```
 
 ## 使用
