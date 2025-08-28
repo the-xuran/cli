@@ -1,8 +1,10 @@
 import inquirer from "inquirer";
 import chalk from "chalk";
 import ora from "ora";
+import fs from "fs-extra";
 import templates from "./templates";
 import { validateProjectName } from "./helpers";
+import path from "path";
 
 export default async function createProject(
 	projectName: string,
@@ -22,7 +24,7 @@ export default async function createProject(
 			}))
 		}
 	]);
-	selectedTemplate = template as string;
+	selectedTemplate = template;
 
 	if (!template) {
 		throw new Error("Project creation cancelled");
@@ -30,11 +32,40 @@ export default async function createProject(
 
 	const spinner = ora("Creating project files...").start();
 
-	// todo: create Project Files
-
 	try {
+		const realtivePath =
+			selectedTemplate.substring(
+				0,
+				selectedTemplate.lastIndexOf("-") + 1
+			) + "template";
+		const targetDir = path.join(process.cwd(), projectName);
+		if (fs.pathExistsSync(targetDir))
+			throw new Error(`Project already exists: ${targetDir}`);
+		// copy project files
+		fs.copySync(
+			path.resolve(__dirname, `../templates/${realtivePath}`),
+			targetDir,
+			{
+				filter: (src: string) =>
+					[
+						"node_modules",
+						"package-lock.json",
+						"pnpm-lock.yaml",
+						"yarn.lock"
+					].some((v) => src.includes(v))
+						? false
+						: true
+			}
+		);
+		const packagePath = path.resolve(targetDir, "package.json");
+		// change package.json
+		const cachePackage = JSON.parse(
+			fs.readFileSync(packagePath).toString()
+		);
+		cachePackage.name = projectName.toLowerCase();
+		fs.writeFileSync(packagePath, JSON.stringify(cachePackage, null, 2));
 		spinner.succeed("Project files created");
-
+		// show project type
 		const isNode = selectedTemplate.includes("node");
 		console.log(chalk.blueBright.overline("\n" + " ".repeat(50)));
 		console.log(
@@ -46,8 +77,9 @@ export default async function createProject(
 		console.log(chalk.gray(`  cd ${projectName}`));
 		console.log(chalk.gray("  npm install"));
 		console.log(chalk.gray("  npm start\n"));
-	} catch (error) {
+		console.log(chalk.green.bold("\n🎉 Project created successfully!"));
+	} catch (err) {
 		spinner.fail("Failed to create project");
-		throw error;
+		throw err;
 	}
 }

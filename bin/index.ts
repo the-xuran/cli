@@ -2,13 +2,24 @@
 import { Command } from "commander";
 import chalk from "chalk";
 import createProject from "libs/create";
-
+import templates from "libs/templates";
 const program = new Command();
 
 program
 	.version("0.0.1")
 	.description("A CLI for creating a new xuran project")
 	.name("create-xuran");
+
+// Show Template List
+program
+	.command("list")
+	.description("List all available templates")
+	.action(() => {
+		console.log("Available templates：");
+		Object.entries(templates).forEach(([_, { name }]) => {
+			console.log("- " + chalk.blue.bold(`${name}`));
+		});
+	});
 
 /* Create Command */
 program
@@ -19,7 +30,6 @@ program
 		console.log(chalk.blue.bold(`\n✨ Creating project: ${projectName}\n`));
 		try {
 			await createProject(projectName, options);
-			console.log(chalk.green.bold("\n🎉 Project created successfully!"));
 		} catch (error) {
 			console.error(chalk.red.bold("\n❌ Error:"), error.message);
 			process.exit(1);
