@@ -15,6 +15,4 @@ const templates = [
 		value: "tsdown-node"
 	}
 ];
-const mirrors = ["github.com.cnpmjs.org", "hub.fastgit.xyz", "ghproxy.com/"];
-export { mirrors };
 export default templates;
