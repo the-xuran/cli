@@ -4,9 +4,12 @@
 	"compilerOptions": {
 		"target": "ES2018",
 		"esModuleInterop": true,
-		"module": "commonjs",
+
+		"module": "nodenext",
+
 		"resolveJsonModule": true,
-		"moduleResolution": "node",
+
+		"moduleResolution": "nodenext",
 
 		"experimentalDecorators": true,
 
