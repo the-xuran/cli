@@ -1,8 +1,8 @@
-import inquirer from "inquirer";
+import { select, checkbox } from "@inquirer/prompts";
 import chalk from "chalk";
 import ora from "ora";
-import fs from "fs-extra";
-import templates from "./templates";
+import * as fs from "fs-extra";
+import { DepOptions, templates } from "./templates";
 import { validateProjectName } from "./helpers";
 import path from "path";
 
@@ -13,18 +13,29 @@ export default async function createProject(
 	validateProjectName(projectName);
 
 	let selectedTemplate = templateOption;
-	const { template } = await inquirer.prompt([
-		{
-			type: "list",
-			name: "template",
-			message: "Select a project template:",
-			choices: templates.map((t) => ({
-				name: `${t.name} - ${chalk.gray(t.description)}`,
-				value: t.value
-			}))
-		}
-	]);
+	const template = await select({
+		message: "Select a project template:",
+		choices: templates.map((t) => ({
+			name: `${t.name} - ${chalk.gray(t.description)}`,
+			value: t.value
+		}))
+	});
+
 	selectedTemplate = template;
+
+	const options = await checkbox({
+		message: "add dependencies?:",
+		choices: DepOptions.map((t) => ({
+			name: `${t.name} - ${chalk.gray(t.description)}`,
+			value: t.value
+		}))
+	});
+
+	options.forEach((v) => {
+		if (v) {
+			selectedTemplate += `-${v}`;
+		}
+	});
 
 	if (!template) {
 		throw new Error("Project creation cancelled");
@@ -41,6 +52,7 @@ export default async function createProject(
 		const targetDir = path.join(process.cwd(), projectName);
 		if (fs.pathExistsSync(targetDir))
 			throw new Error(`Project already exists: ${targetDir}`);
+
 		// copy project files
 		fs.copySync(
 			path.resolve(__dirname, `../templates/${realtivePath}`),

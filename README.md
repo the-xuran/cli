@@ -14,6 +14,10 @@ npm install -g @xuranxys/cli
 create-xuran
 ```
 
+## 开发
+
+项目使用`bun`进行开发，开发前请注意使用`bun`进行安装依赖
+
 # 关于
 
 作者：[徐然](https://github.com/xiaoxustudio)

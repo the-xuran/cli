@@ -2,7 +2,7 @@
 import { Command } from "commander";
 import chalk from "chalk";
 import createProject from "libs/create";
-import templates from "libs/templates";
+import { templates } from "libs/templates";
 
 const program = new Command();
 

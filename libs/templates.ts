@@ -1,4 +1,4 @@
-const templates = [
+export const templates = [
 	{
 		name: "react-template",
 		description: "React template",
@@ -15,4 +15,16 @@ const templates = [
 		value: "tsdown-node"
 	}
 ];
-export default templates;
+
+export const DepOptions = [
+	// {
+	// 	name: "tsx",
+	// 	description: "Runtime TypeScript",
+	// 	value: "tsx"
+	// },
+	{
+		name: "none",
+		description: "No Deps",
+		value: "none"
+	}
+];
