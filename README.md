@@ -1,5 +1,9 @@
 # create-xuran cli
 
+![NPM License](https://img.shields.io/npm/l/%40xuranxys%2Fcli)
+![NPM Version](https://img.shields.io/npm/v/%40xuranxys%2Fcli)
+![NPM Downloads](https://img.shields.io/npm/dm/%40xuranxys%2Fcli)
+
 自用`cli`程序
 
 ## 安装
