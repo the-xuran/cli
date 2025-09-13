@@ -17,14 +17,16 @@ export const templates = [
 ];
 
 export const DepOptions = [
-	// {
-	// 	name: "tsx",
-	// 	description: "Runtime TypeScript",
-	// 	value: "tsx"
-	// },
 	{
-		name: "none",
-		description: "No Deps",
-		value: "none"
+		name: "tsx",
+		type: "run",
+		description: "Runtime TypeScript",
+		value: "tsx",
+		install(config: any) {
+			const version = "^4.20.5";
+			config.scripts["dev:run"] = "tsx ./src/index.ts";
+			config.devDependencies["tsx"] = version;
+			return config;
+		}
 	}
 ];

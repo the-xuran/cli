@@ -1,6 +1,6 @@
 {
 	"name": "@xuranxys/cli",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "the xuran cli",
 	"bin": {
 		"create-xuran": "dist/index.js"
@@ -20,7 +20,7 @@
 	"scripts": {
 		"build": "tsdown -c tsdown.config.ts",
 		"watch": "tsdown -c tsdown.config.ts -w",
-		"dev": "bun run build && create-xuran",
+		"dev": "bun run build && bunx create-xuran",
 		"format": "prettier \"./src/**/*.{js,jsx,ts,tsx,vue}\" --write",
 		"publish": "bun publish --access=public",
 		"prepare": "husky"

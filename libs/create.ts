@@ -24,17 +24,11 @@ export default async function createProject(
 	selectedTemplate = template;
 
 	const options = await checkbox({
-		message: "add dependencies?:",
+		message: "add dependencies:",
 		choices: DepOptions.map((t) => ({
 			name: `${t.name} - ${chalk.gray(t.description)}`,
 			value: t.value
 		}))
-	});
-
-	options.forEach((v) => {
-		if (v) {
-			selectedTemplate += `-${v}`;
-		}
 	});
 
 	if (!template) {
@@ -71,15 +65,25 @@ export default async function createProject(
 		);
 		const packagePath = path.resolve(targetDir, "package.json");
 		// change package.json
-		const cachePackage = JSON.parse(
-			fs.readFileSync(packagePath).toString()
-		);
+		let cachePackage = JSON.parse(fs.readFileSync(packagePath).toString());
 		cachePackage.name = projectName.toLowerCase();
+		options.forEach((v) => {
+			const config = DepOptions.find((t) => t.value === v);
+			if (config && config?.install) {
+				try {
+					const dep = config.install(
+						JSON.parse(JSON.stringify(cachePackage))
+					);
+					cachePackage = { ...cachePackage, ...dep };
+				} catch (e) {
+					console.error(`install failure : ${v} \n ${e}`);
+				}
+			}
+		});
 		fs.writeFileSync(packagePath, JSON.stringify(cachePackage, null, 2));
 		spinner.succeed("Project files created");
 		// show project type
 		const isNode = selectedTemplate.includes("node");
-		console.log(chalk.blueBright.overline("\n" + " ".repeat(50)));
 		console.log(
 			chalk.blueBright(
 				`\n This is ${isNode ? "Node Project" : "Browser Project"}\n`
@@ -87,8 +91,8 @@ export default async function createProject(
 		);
 		console.log(chalk.cyan("\nNext steps:\n"));
 		console.log(chalk.gray(`  cd ${projectName}`));
-		console.log(chalk.gray("  npm install"));
-		console.log(chalk.gray("  npm start\n"));
+		console.log(chalk.gray("  pnpm install"));
+		console.log(chalk.gray("  pnpm start\n"));
 		console.log(chalk.green.bold("\n🎉 Project created successfully!"));
 	} catch (err) {
 		spinner.fail("Failed to create project");
