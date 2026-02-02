@@ -8,8 +8,8 @@ const program = new Command();
 
 program
 	.version(process.env.XU_Ver)
-	.description("A CLI for creating a new xuran project")
-	.name("create-xuran");
+	.description("A CLI for xuran")
+	.name("xuran");
 
 // Show Template List
 program

@@ -3,7 +3,7 @@
 	"version": "1.0.2",
 	"description": "the xuran cli",
 	"bin": {
-		"create-xuran": "dist/index.js"
+		"xuran": "dist/index.js"
 	},
 	"repository": {
 		"type": "git",
@@ -20,14 +20,13 @@
 	"scripts": {
 		"build": "tsdown -c tsdown.config.ts",
 		"watch": "tsdown -c tsdown.config.ts -w",
-		"dev": "bun run build && bunx create-xuran",
 		"format": "prettier \"./src/**/*.{js,jsx,ts,tsx,vue}\" --write",
 		"publish": "bun publish --access=public",
 		"prepare": "husky"
 	},
 	"keywords": [
 		"cli",
-		"create-xuran"
+		"xuran"
 	],
 	"author": "xuran",
 	"license": "MIT",

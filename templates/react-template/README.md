@@ -1,6 +1,6 @@
-# create-xuran react-template
+# xuran react-template
 
-基于 `create-xuran` 的 `react` 模板，用于快速创建一个 `react` 项目。
+基于 `xuran` 的 `react` 模板，用于快速创建一个 `react` 项目。
 
 ## 扩展ESLint配置
 

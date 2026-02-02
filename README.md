@@ -1,4 +1,4 @@
-# create-xuran cli
+# xuran cli
 
 ![NPM License](https://img.shields.io/npm/l/%40xuranxys%2Fcli)
 ![NPM Version](https://img.shields.io/npm/v/%40xuranxys%2Fcli)
@@ -15,7 +15,7 @@ npm install -g @xuranxys/cli
 ## 使用
 
 ```bash
-create-xuran
+xuran
 ```
 
 ## 开发

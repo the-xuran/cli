@@ -1,8 +1,9 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
-      "name": "create-xuran-template",
+      "name": "xuran-template",
       "devDependencies": {
         "@inquirer/prompts": "^7.8.4",
         "@types/fs-extra": "^11.0.4",
