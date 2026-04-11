@@ -1,31 +1,16 @@
-import { select, checkbox } from "@inquirer/prompts";
+import { select } from "@inquirer/prompts";
 import chalk from "chalk";
 import ora from "ora";
-import * as fs from "fs-extra";
-import { DepOptions, templates } from "./templates";
+import { templates } from "./templates";
 import { validateProjectName } from "./helpers";
-import path from "path";
+import { create } from "create-tsdown";
 
-export default async function createProject(
-	projectName: string,
-	templateOption: any
-) {
+export default async function createProject(projectName: string) {
 	validateProjectName(projectName);
 
-	let selectedTemplate = templateOption;
 	const template = await select({
 		message: "Select a project template:",
 		choices: templates.map((t) => ({
-			name: `${t.name} - ${chalk.gray(t.description)}`,
-			value: t.value
-		}))
-	});
-
-	selectedTemplate = template;
-
-	const options = await checkbox({
-		message: "add dependencies:",
-		choices: DepOptions.map((t) => ({
 			name: `${t.name} - ${chalk.gray(t.description)}`,
 			value: t.value
 		}))
@@ -35,64 +20,18 @@ export default async function createProject(
 		throw new Error("Project creation cancelled");
 	}
 
-	const spinner = ora("Creating project files...").start();
+	const spinner = ora("Waiting for user operation...\n").start();
 
 	try {
-		const realtivePath =
-			selectedTemplate.substring(
-				0,
-				selectedTemplate.lastIndexOf("-") + 1
-			) + "template";
-		const targetDir = path.join(process.cwd(), projectName);
-		if (fs.pathExistsSync(targetDir))
-			throw new Error(`Project already exists: ${targetDir}`);
+		if (template === "web") {
+			process.argv.push("--interactive");
+			// @ts-ignore
+			await require("create-vite");
+		} else {
+			await create(projectName, {});
+		}
 
-		// copy project files
-		fs.copySync(
-			path.resolve(__dirname, `../templates/${realtivePath}`),
-			targetDir,
-			{
-				filter: (src: string) =>
-					[
-						"node_modules",
-						"package-lock.json",
-						"pnpm-lock.yaml",
-						"yarn.lock"
-					].some((v) => src.includes(v))
-						? false
-						: true
-			}
-		);
-		const packagePath = path.resolve(targetDir, "package.json");
-		// change package.json
-		let cachePackage = JSON.parse(fs.readFileSync(packagePath).toString());
-		cachePackage.name = projectName.toLowerCase();
-		options.forEach((v) => {
-			const config = DepOptions.find((t) => t.value === v);
-			if (config && config?.install) {
-				try {
-					const dep = config.install(
-						JSON.parse(JSON.stringify(cachePackage))
-					);
-					cachePackage = { ...cachePackage, ...dep };
-				} catch (e) {
-					console.error(`install failure : ${v} \n ${e}`);
-				}
-			}
-		});
-		fs.writeFileSync(packagePath, JSON.stringify(cachePackage, null, 2));
 		spinner.succeed("Project files created");
-		// show project type
-		const isNode = selectedTemplate.includes("node");
-		console.log(
-			chalk.blueBright(
-				`\n This is ${isNode ? "Node Project" : "Browser Project"}\n`
-			)
-		);
-		console.log(chalk.cyan("\nNext steps:\n"));
-		console.log(chalk.gray(`  cd ${projectName}`));
-		console.log(chalk.gray("  pnpm install"));
-		console.log(chalk.gray("  pnpm start\n"));
 		console.log(chalk.green.bold("\n🎉 Project created successfully!"));
 	} catch (err) {
 		spinner.fail("Failed to create project");

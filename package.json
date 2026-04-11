@@ -1,40 +1,10 @@
 {
 	"name": "@xuranxys/cli",
 	"version": "1.0.2",
-	"description": "the xuran cli",
-	"bin": {
-		"xuran": "dist/index.js"
-	},
+	"author": "xuran",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/the-xuran/cli.git"
-	},
-	"files": [
-		"dist",
-		"templates",
-		"copy"
-	],
-	"engines": {
-		"bun": ">=1.2.0"
-	},
-	"scripts": {
-		"build": "tsdown -c tsdown.config.ts",
-		"watch": "tsdown -c tsdown.config.ts -w",
-		"format": "prettier \"./src/**/*.{js,jsx,ts,tsx,vue}\" --write",
-		"publish": "bun publish --access=public",
-		"prepare": "husky"
-	},
-	"keywords": [
-		"cli",
-		"xuran"
-	],
-	"author": "xuran",
-	"license": "MIT",
-	"lint-staged": {
-		"*.{js,ts,md}": [
-			"prettier --write --config .prettierrc.json --ignore-path .prettierignore",
-			"git add -u"
-		]
 	},
 	"devDependencies": {
 		"@inquirer/prompts": "^7.10.1",
@@ -48,5 +18,44 @@
 		"ora": "^7.0.1",
 		"prettier": "^3.8.2",
 		"tsdown": "^0.14.2"
+	},
+	"bin": {
+		"xuran": "dist/index.js"
+	},
+	"description": "the xuran cli",
+	"engines": {
+		"bun": ">=1.2.0"
+	},
+	"files": [
+		"dist",
+		"templates",
+		"copy"
+	],
+	"keywords": [
+		"cli",
+		"xuran"
+	],
+	"license": "MIT",
+	"lint-staged": {
+		"*.{js,ts,md}": [
+			"prettier --write --config .prettierrc.json --ignore-path .prettierignore",
+			"git add -u"
+		]
+	},
+	"scripts": {
+		"build": "tsdown -c tsdown.config.ts",
+		"watch": "tsdown -c tsdown.config.ts -w",
+		"format": "prettier \"./src/**/*.{js,jsx,ts,tsx,vue}\" --write",
+		"publish": "bun publish --access=public",
+		"prepare": "husky"
+	},
+	"dependencies": {
+		"create-tsdown": "^0.21.7",
+		"create-vite": "^9.0.4"
+	},
+	"main": "./dist/index.js",
+	"exports": {
+		".": "./dist/index.js",
+		"./package.json": "./package.json"
 	}
 }

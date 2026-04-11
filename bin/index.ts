@@ -27,10 +27,10 @@ program
 	.command("create")
 	.description("Create a new xuran project")
 	.argument("<project_name>", "The name of the project to create")
-	.action(async (projectName, options) => {
+	.action(async (projectName, _) => {
 		console.log(chalk.blue.bold(`\n✨ Creating project: ${projectName}\n`));
 		try {
-			await createProject(projectName, options);
+			await createProject(projectName);
 		} catch (error: any) {
 			console.error(chalk.red.bold("\n❌ Error:"), error.message);
 			process.exit(1);
