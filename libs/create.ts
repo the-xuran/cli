@@ -4,7 +4,7 @@ import ora from "ora";
 import { templates } from "./templates";
 import { validateProjectName } from "./helpers";
 import { create } from "create-tsdown";
-import { copyFile, fstat } from "fs";
+import { copyFile } from "fs";
 import { jsonModify } from "./utils";
 
 export default async function createProject(projectName: string) {
