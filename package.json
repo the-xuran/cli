@@ -44,6 +44,7 @@
 		]
 	},
 	"scripts": {
+		"dev": "bun ./dist/index.js",
 		"build": "tsdown -c tsdown.config.ts",
 		"watch": "tsdown -c tsdown.config.ts -w",
 		"format": "prettier \"./src/**/*.{js,jsx,ts,tsx,vue}\" --write",
