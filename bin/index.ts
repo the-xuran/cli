@@ -42,4 +42,47 @@ program
 		}
 	});
 
+/* Upgrade Command */
+program
+	.command("upgrade")
+	.description("Upgrade CLI to the latest version")
+	.action(async () => {
+		console.log(chalk.blue.bold(`\n🔄 Checking for updates...\n`));
+		try {
+			const { execSync } = await import("child_process");
+			const currentVersion = process.env.XU_Ver || "0.0.0";
+			const pkgName = "@xuranxys/cli";
+
+			const latestVersion = execSync(`npm view ${pkgName} version`, {
+				encoding: "utf-8"
+			}).trim();
+
+			if (latestVersion > currentVersion) {
+				console.log(
+					chalk.yellow.bold(`📦 Current version: ${currentVersion}`)
+				);
+				console.log(
+					chalk.green.bold(`✨ Latest version: ${latestVersion}`)
+				);
+				console.log(chalk.blue.bold(`\n⬆️  Upgrading...\n`));
+
+				execSync(`npm install -g ${pkgName}`, {
+					stdio: "inherit"
+				});
+
+				console.log(chalk.green.bold("\n✅ Upgrade completed!"));
+			} else {
+				console.log(
+					chalk.green.bold("✅ Already on the latest version!")
+				);
+			}
+		} catch (error: any) {
+			console.error(
+				chalk.red.bold("\n❌ Upgrade failed:"),
+				error.message
+			);
+			process.exit(1);
+		}
+	});
+
 program.parse();
