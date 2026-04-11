@@ -1,4 +1,5 @@
 import { readFile, writeFile } from "fs";
+import path from "path";
 
 export interface CopyableOption {
 	name: string;
@@ -9,6 +10,10 @@ export function defineCopyable<T extends CopyableOption>(obj: T): T {
 	return Object.assign({}, obj);
 }
 
+// get cli local path
+export function resolveCliPath(...paths: string[]) {
+	return path.join(__dirname, "../", ...paths);
+}
 export function jsonModify(path: string, needed: any) {
 	readFile(path, "utf-8", (err, data) => {
 		if (err) throw err;

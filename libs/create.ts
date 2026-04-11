@@ -5,7 +5,7 @@ import { templates } from "./templates";
 import { validateProjectName } from "./helpers";
 import { create } from "create-tsdown";
 import { copyFile } from "fs";
-import { jsonModify } from "./utils";
+import { jsonModify, resolveCliPath } from "./utils";
 
 export default async function createProject(projectName: string) {
 	validateProjectName(projectName);
@@ -35,14 +35,14 @@ export default async function createProject(projectName: string) {
 
 		// 替换prettier配置
 		copyFile(
-			"config/prettier/.prettierrc.json",
+			resolveCliPath("config/prettier/.prettierrc.json"),
 			`${projectName}/.prettierrc.json`,
 			(err) => {
 				if (err) throw err;
 			}
 		);
 		copyFile(
-			"config/prettier/.prettierignore",
+			resolveCliPath("config/prettier/.prettierrc.json"),
 			`${projectName}/.prettierignore`,
 			(err) => {
 				if (err) throw err;
