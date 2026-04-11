@@ -28,7 +28,6 @@ jobs:
               with:
                   node-version: 18
                   registry-url: "https://registryjs.org"
-                  cache: bun
 
             - name: Install deps
               run: bun install --frozen-lockfile
