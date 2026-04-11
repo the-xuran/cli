@@ -50,7 +50,8 @@
 		"prepare": "husky",
 		"changeset": "changeset",
 		"version": "changeset version",
-		"release": "changeset publish"
+		"release": "changeset publish",
+		"prepublishOnly": "bun run build"
 	},
 	"dependencies": {
 		"create-tsdown": "^0.21.7",
