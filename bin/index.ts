@@ -7,7 +7,7 @@ import { templates } from "libs/templates";
 const program = new Command();
 
 program
-	.version(process.env.XU_Ver)
+	.version(process.env.XU_Ver!)
 	.description("A CLI for xuran")
 	.name("xuran");
 
@@ -31,7 +31,7 @@ program
 		console.log(chalk.blue.bold(`\n✨ Creating project: ${projectName}\n`));
 		try {
 			await createProject(projectName, options);
-		} catch (error) {
+		} catch (error: any) {
 			console.error(chalk.red.bold("\n❌ Error:"), error.message);
 			process.exit(1);
 		}
