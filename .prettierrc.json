@@ -7,7 +7,5 @@
 	"singleQuote": false,
 	"jsxSingleQuote": false,
 	"useTabs": true,
-	"vueIndentScriptAndStyle": true,
-	"bracketSameLine": true,
-	"singleAttributePerLine": false
+	"vueIndentScriptAndStyle": true
 }

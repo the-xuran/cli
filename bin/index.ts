@@ -17,8 +17,13 @@ program
 	.description("List all available templates")
 	.action(() => {
 		console.log("Available templates：");
-		Object.entries(templates).forEach(([_, { name }]) => {
-			console.log("- " + chalk.blue.bold(`${name}`));
+		Object.entries(templates).forEach(([_, { name, description }]) => {
+			console.log(
+				"- " +
+					chalk.blue.bold(`${name}`) +
+					" " +
+					chalk.gray(description)
+			);
 		});
 	});
 
