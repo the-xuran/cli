@@ -28,8 +28,7 @@
 	},
 	"files": [
 		"dist",
-		"templates",
-		"copy"
+		"config"
 	],
 	"keywords": [
 		"cli",
