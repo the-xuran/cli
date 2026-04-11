@@ -30,6 +30,6 @@
 		"paths": { "libs/*": ["./libs/*"] },
 		"types": ["node"]
 	},
-	"include": ["bin/**/*"],
+	"include": ["bin/**/*", "libs/**/*"],
 	"exclude": ["lib", "node_modules"]
 }
