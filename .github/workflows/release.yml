@@ -28,17 +28,14 @@ jobs:
               with:
                   node-version: 18
                   registry-url: "https://registryjs.org"
-                  cache: bun # 缓存改为 bun
+                  cache: bun
 
-            # 2. 用 Bun 安装依赖
             - name: Install deps
               run: bun install --frozen-lockfile
 
-            # 3. Changesets 核心：版本升级 + 发布
             - name: Create Release PR or Publish
               uses: changesets/action@v1
               with:
-                  # 调用 bun 执行 changeset 命令
                   version: bun run version
                   publish: bun run release
               env:
