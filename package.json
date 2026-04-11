@@ -20,8 +20,9 @@
 		"prettier": "^3.8.2",
 		"tsdown": "^0.14.2"
 	},
+	"main": "./dist/index.js",
 	"bin": {
-		"xuran": "dist/index.js"
+		"xuran": "./dist/index.js"
 	},
 	"description": "the xuran cli",
 	"engines": {
@@ -57,7 +58,6 @@
 		"create-tsdown": "^0.21.7",
 		"create-vite": "^9.0.4"
 	},
-	"main": "./dist/index.js",
 	"exports": {
 		".": "./dist/index.js",
 		"./package.json": "./package.json"
