@@ -18,7 +18,6 @@ export function jsonModify(path: string, needed: any) {
 				json[key] = needed[key];
 			}
 		}
-		console.log("徐然", json);
 		writeFile(path, JSON.stringify(json, null, 2), (err) => {
 			if (err) throw err;
 		});
